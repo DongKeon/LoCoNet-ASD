@@ -1,11 +1,5 @@
-# DATR
-Dynamic Anchor Boxes and Temporal-Relational Transformers for Enhanced Active Speaker Detection (MMSP 2023)
-
-## Overview
-Our happiness circuit on
-
-## Dependency
-We used python=3.6, pytorch=1.9.1 in our experiments.
+# LoCoNet
+LoCoNet:Long-Short Context Network for Active Speaker Detection (2023 CVPR)
 
 ## Code Usage
 1) Download the audio-visual features and the annotation csv files from [Google Drive](https://drive.google.com/drive/folders/1fYALbElvIKjqeS8uGTHSeqtOhA6FXuRi?usp=sharing). The directories should look like as follows:
@@ -23,8 +17,9 @@ We used python=3.6, pytorch=1.9.1 in our experiments.
 ```
 
 
+2) Training / Validation
 ```
-2) bash run.sh conf/LoCoNet/ResNet18/large
+bash run.sh conf/LoCoNet/ResNet18/large [gpu_id] 1
 ```
 
 ## Note
