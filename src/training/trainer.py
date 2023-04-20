@@ -11,7 +11,6 @@ from einops import rearrange
 from models.ASCNet      import ASCNet
 from models.TalkNet     import TalkNet
 from models.LoCoNet     import LoCoNet
-from models.DualPathNet import DualPathNet
 
 from loss               import lossAV, lossA, lossV
 
@@ -40,11 +39,6 @@ class TrainModule(nn.Module):
             self.model = LoCoNet(in_dim=args.feat_dim, hidden_dim=args.hidden_dim, 
                                  dropout=args.dropout, num_blocks=args.num_blocks)
             self.final_dim = args.hidden_dim*2*args.time_length*args.candidate_speakers
-
-        elif self.model_type == "DualPathNet":
-            self.model = DualPathNet(in_dim=args.feat_dim,
-                                     hidden_dim=args.hidden_dim)
-            self.final_dim = args.hidden_dim*args.time_length*args.candidate_speakers
 
         else:
             raise NotImplementedError("Model not implemented")
@@ -192,30 +186,11 @@ class TrainModule(nn.Module):
             top1 += prec
             val_loss += nlossAV
             index += len(labels)
-            #predScore = predScore[:,1].detach().cpu().numpy()
-            #predScores.extend(predScore)
 
         epoch_auc   = roc_auc_score(label_lst, pred_lst) * 100
         epoch_mAP   = average_precision_score(label_lst, pred_lst) * 100
         epoch_acc   = top1 / index * 100
         val_loss    = val_loss / index * 100
-        """
-        evalLines = open(evalOrig).read().splitlines()[1:]
-
-        labels = []
-        labels = pandas.Series( ['SPEAKING_AUDIBLE' for line in evalLines])
-        scores = pandas.Series(predScores)
-        evalRes = pandas.read_csv(evalOrig)
-        evalRes['score'] = scores
-        evalRes['label'] = labels
-        evalRes.drop(['label_id'], axis=1,inplace=True)
-        evalRes.drop(['instance_id'], axis=1,inplace=True)
-        evalRes.to_csv(evalCsvSave, index=False)
-        cmd = "python -O src/utils/get_ava_active_speaker_performance.py -g %s -p %s "%(evalOrig, evalCsvSave)
-        mAP = float(str(subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout).split(' ')[2][:5])
-        print("cmd based mAP: ", mAP)
-        """
-
         self.writer.add_scalar('Measure/Val/mAP', epoch_mAP, epoch)
         self.writer.add_scalar('Measure/Val/AUC', epoch_auc, epoch)
         self.writer.add_scalar('Measure/Val/Acc', epoch_acc, epoch)

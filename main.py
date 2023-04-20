@@ -106,23 +106,6 @@ def set_seed(args):# {{{
 
 
 def create_data_loaders(args):# {{{
-    """TalkNet-Based"""
-    """
-    # {{{
-    from data.dataLoader import train_loader, val_loader
-    loader = train_loader(trialFileName = args.trainTrialAVA, \
-                          audioPath      = os.path.join(args.audioPathAVA , 'train'), \
-                          visualPath     = os.path.join(args.visualPathAVA, 'train'), \
-                          **vars(args))
-    train_loader = torch.utils.data.DataLoader(loader, batch_size=1, shuffle=True, num_workers=args.num_workers)
-
-    loader = val_loader(trialFileName = args.evalTrialAVA, \
-                        audioPath     = os.path.join(args.audioPathAVA , args.evalDataType), \
-                        visualPath    = os.path.join(args.visualPathAVA, args.evalDataType), \
-                        **vars(args))
-    val_loader = torch.utils.data.DataLoader(loader, batch_size = 1, shuffle=False, num_workers=args.num_workers)
-    # }}}
-    """
     """ASC-Based"""
     # {{{
     dataset_train = ASCFeaturesDataset(os.path.join(args.feat_path, 'train_forward/*.csv'),
