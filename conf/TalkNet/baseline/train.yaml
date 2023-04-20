@@ -1,0 +1,13 @@
+# Model Config
+model_type: TalkNet
+
+# Encoder (Front-End)
+# Decoder (Back-End)
+
+# Optimizer Config
+maxEpoch: 30
+lr: 1e-4
+lrDecay: 0.95
+
+# ETC config
+seed: 777

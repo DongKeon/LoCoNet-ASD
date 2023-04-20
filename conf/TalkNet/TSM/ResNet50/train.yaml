@@ -1,0 +1,13 @@
+# Model Config
+model_type: TalkNet
+feat_path: features/resnet50-tsm-aug
+
+# Encoder (Front-End)
+# Decoder (Back-End)
+
+# Optimizer Config
+#lr: 1e-4
+#lrDecay: 0.95
+
+# ETC config
+seed: 777

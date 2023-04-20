@@ -1,0 +1,29 @@
+# Model Config
+model_type: LoCoNet
+feat_path: features/resnet18-tsm-aug
+
+feat_dim: 512
+hidden_dim: 64
+nhead: 8
+
+num_blocks: 2
+
+dropout: 0.1
+ 
+# Structured Context Ensemble
+time_length: 11
+#time_length: 1
+time_stride: 4
+candidate_speakers: 3
+
+# Optimizer Config
+optimizer: Adam
+lr: 3e-6
+lrDecay: 0.1
+step_size: 10
+
+# Batch Config
+batch_size: 64
+
+# ETC config
+seed: 777
