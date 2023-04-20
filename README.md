@@ -1,6 +1,5 @@
 # LoCoNet
 LoCoNet: Long-Short Context Network for Active Speaker Detection (2023 CVPR)
-Code for training only LoCoNet backend with pre-trained feature provided by [SPELL](https://github.com/SRA2/SPELL).
 
 ## Code Usage
 1) Download the audio-visual features and the annotation csv files from [Google Drive](https://drive.google.com/drive/folders/1fYALbElvIKjqeS8uGTHSeqtOhA6FXuRi?usp=sharing). The directories should look like as follows:
@@ -24,5 +23,4 @@ bash run.sh conf/LoCoNet/ResNet18/large [gpu_id] 1
 ```
 
 ## Note
-- We used the official code of [Active Speakers in Context (ASC)](https://github.com/fuankarion/active-speakers-context) to extract the audio-visual features (Stage-1). Specifically, we used `STE_train.py` and `STE_forward.py` of the ASC repository to train our two-stream ResNet-TSM encoders and extract the audio-visual features. We did not use any other components such as the postprocessing module or the context refinement modules. Please refer to `models_stage1_tsm.py` and the checkpoints from this [link](https://drive.google.com/drive/folders/1oom1XLVv8yAR8TVEmepsQ9Yp0E0SIAXM?usp=sharing) to see how we implanted the TSM into the two-stream ResNets.
-
+- Code for training only LoCoNet backend with pre-trained feature provided by [SPELL](https://github.com/SRA2/SPELL).
