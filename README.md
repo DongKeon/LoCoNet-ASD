@@ -1,5 +1,6 @@
 # LoCoNet
-LoCoNet:Long-Short Context Network for Active Speaker Detection (2023 CVPR)
+LoCoNet: Long-Short Context Network for Active Speaker Detection (2023 CVPR)
+Code for training only LoCoNet backend with pre-trained feature provided by [SPELL](https://github.com/SRA2/SPELL).
 
 ## Code Usage
 1) Download the audio-visual features and the annotation csv files from [Google Drive](https://drive.google.com/drive/folders/1fYALbElvIKjqeS8uGTHSeqtOhA6FXuRi?usp=sharing). The directories should look like as follows:
